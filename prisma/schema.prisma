@@ -72,3 +72,26 @@ enum ProcurementStatus {
   CLOSED
   CANCELLED
 }
+
+// ebooks
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  books       Book[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Book {
+  id          String   @id @default(cuid())
+  title       String
+  author      String
+  description String   @db.Text
+  coverImage  String
+  pdfFile     String
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
