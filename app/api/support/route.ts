@@ -82,8 +82,8 @@ export async function POST(request: NextRequest) {
       </head>
       <body>
         <div class="container">
-          <div class="header text-center justify-center">
-            <img src="cid:logo" alt="SDN Thailand Logo" class="logo">
+         <div class="header flex items-center justify-center py-5 border-b-2 border-[#f58220]">
+            <img src="cid:logo" alt="SDN Thailand Logo" class="w-[100px] h-auto">
           </div>
           <div class="content">
             <h1 style="color: #f58220;">คำขอสื่อรณรงค์ใหม่</h1>
@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
     // Send email
     await transporter.sendMail({
       from: '"SDN Thailand" <sdnthailandbackup@gmail.com>',
-      to: "evo_reaction@hotmail.com, tom_teera@hotmail.com, bosupaluk@hotmail.com",
+      to: "evo_reaction@hotmail.com, tom_teera@hotmail.com, bosupaluk@hotmail.com, tan66847@gmail.com",
       subject: `คำขอสื่อรณรงค์ใหม่: ${subject}`,
       html: emailHtml,
       attachments: [

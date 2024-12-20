@@ -209,7 +209,7 @@ const Navbar: React.FC = () => {
                       onClick={handleSignOut}
                       className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500"
                     >
-                      SignOut
+                      Sign Out
                     </button>
                   </div>
                 )}
@@ -224,7 +224,7 @@ const Navbar: React.FC = () => {
                       : "text-gray-600 hover:text-orange-500"
                   }`}
                 >
-                  SignIn
+                  Sign In
                 </Link>
               </div>
             )}
