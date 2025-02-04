@@ -29,7 +29,7 @@ export default function PrintLabelsPage() {
                 href="/products/print-only"
                 className="px-4 py-2 text-zinc-600 hover:text-zinc-900 transition-colors"
               >
-                กลับ
+                กลับหน้าแดชบอร์ด
               </Link>
             </div>
           </div>
