@@ -23,16 +23,11 @@ model User {
   createdAt           DateTime       @default(now())
   updatedAt           DateTime       @updatedAt
   mediaRequests       MediaRequest[]
-  orders             Order[]
-  verifiedSlips      PaymentSlip[]  @relation("SlipVerifier")
+  orders              Order[]
+  verifiedSlips       PaymentSlip[]  @relation("SlipVerifier")
 
   @@index([email])
   @@index([role])
-}
-
-enum Role {
-  MEMBER
-  ADMIN
 }
 
 model MediaRequest {
@@ -40,70 +35,62 @@ model MediaRequest {
   userId      Int
   subject     String
   message     String
-  phoneNumber String
   filePath    String?
   createdAt   DateTime @default(now())
+  phoneNumber String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
 
 model AnnounceResult {
-  id            String     @id @default(cuid())
+  id            String      @id @default(cuid())
   procurementId String
-  procurement   Procurement @relation(fields: [procurementId], references: [id], onDelete: Cascade)
   pdfFile       String?
-  announcedDate DateTime   @default(now())
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  announcedDate DateTime    @default(now())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  procurement   Procurement @relation(fields: [procurementId], references: [id], onDelete: Cascade)
 
   @@index([procurementId])
 }
 
 model Procurement {
-  id             String     @id @default(cuid())
-  projectCode    String     @unique
-  title          String
-  description    String
-  startDate      DateTime
-  endDate        DateTime
-  status         ProcurementStatus
-  coverImage     String?
-  pdfFile        String?
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
+  id              String            @id @default(cuid())
+  projectCode     String            @unique
+  title           String
+  description     String
+  coverImage      String?
+  pdfFile         String?
+  startDate       DateTime
+  endDate         DateTime
+  status          ProcurementStatus
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
   announceResults AnnounceResult[]
 
   @@index([status])
   @@index([startDate, endDate])
 }
 
-enum ProcurementStatus {
-  DRAFT
-  OPEN
-  CLOSED
-  CANCELLED
-}
-
-// Shop Models
 model StoreCategory {
   id          String    @id @default(cuid())
   name        String    @unique
   description String?
-  products    Product[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  products    Product[]
 
   @@index([name])
 }
 
 model Size {
-  id          String    @id @default(cuid())
-  name        String    @unique 
-  description String?   
+  id           String        @id @default(cuid())
+  name         String        @unique
+  description  String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
   productSizes ProductSize[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
 
   @@index([name])
 }
@@ -112,13 +99,13 @@ model ProductSize {
   id        String     @id @default(cuid())
   productId String
   sizeId    String
-  stock     Int       @default(0)
-  preorders Int       @default(0)
-  product   Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
-  size      Size      @relation(fields: [sizeId], references: [id], onDelete: Restrict)
-  cartItems CartItem[] // เพิ่ม relation นี้
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  stock     Int        @default(0)
+  preorders Int        @default(0)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  cartItems CartItem[]
+  product   Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  size      Size       @relation(fields: [sizeId], references: [id])
 
   @@unique([productId, sizeId])
   @@index([productId])
@@ -126,28 +113,21 @@ model ProductSize {
   @@index([stock])
 }
 
-// schema.prisma
-enum ProductStatus {
- NORMAL
- PREORDER
- NEW
-}
-
 model Product {
   id          String         @id @default(cuid())
   name        String
   description String         @db.Text
-  price       Decimal        @db.Decimal(10,2)
+  price       Decimal        @db.Decimal(10, 2)
   stock       Int
-  status      ProductStatus  @default(NORMAL)
-  images      ProductImage[]
   categoryId  String
-  category    StoreCategory  @relation(fields: [categoryId], references: [id], onDelete: Restrict)
-  orderItems  OrderItem[]
-  cartItems   CartItem[]    // เพิ่มบรรทัดนี้
-  sizes       ProductSize[]
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
+  status      ProductStatus  @default(NORMAL)
+  cartItems   CartItem[]
+  orderItems  OrderItem[]
+  category    StoreCategory  @relation(fields: [categoryId], references: [id])
+  images      ProductImage[]
+  sizes       ProductSize[]
 
   @@index([categoryId])
   @@index([name])
@@ -155,69 +135,63 @@ model Product {
   @@index([status])
 }
 
-// เพิ่ม model ใหม่สำหรับเก็บรูปภาพ
 model ProductImage {
-  id          String    @id @default(cuid())
-  url         String    
-  alt         String?
-  isCover     Boolean   @default(false)
-  sortOrder   Int       @default(0)
-  productId   String
-  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id        String   @id @default(cuid())
+  url       String
+  alt       String?
+  isCover   Boolean  @default(false)
+  sortOrder Int      @default(0)
+  productId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@index([productId])
   @@index([isCover])
 }
 
 model ShippingAddress {
-  id            String    @id @default(cuid())
-  orderId       String    @unique
-  order         Order     @relation(fields: [orderId], references: [id], onDelete: Cascade) 
-  name          String
-  phone         String
-  email         String    // เพิ่มบรรทัดนี้
-  address       String
-  district      String
-  amphoe        String
-  province      String
-  zipcode       String
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id        String   @id @default(cuid())
+  orderId   String   @unique
+  name      String
+  phone     String
+  address   String
+  district  String
+  amphoe    String
+  province  String
+  zipcode   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
   @@index([orderId])
 }
 
 model BankAccount {
-  id            String    @id @default(cuid())
+  id            String   @id @default(cuid())
   bankName      String
   accountNumber String
   accountName   String
   branch        String
   promptpay     String
-  isActive      Boolean   @default(true)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-}
-
-enum PaymentMethod {
-  BANK_TRANSFER
-  PROMPTPAY
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Order {
-  id            String          @id @default(cuid())
-  userId        Int?           
-  user          User?          @relation(fields: [userId], references: [id], onDelete: Restrict)
+  id            String           @id @default(cuid())
+  userId        Int?
+  totalAmount   Decimal          @db.Decimal(10, 2)
+  status        OrderStatus      @default(PENDING)
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  paymentMethod PaymentMethod    @default(BANK_TRANSFER)
+  user          User?            @relation(fields: [userId], references: [id], onDelete: Restrict)
   items         OrderItem[]
-  totalAmount   Decimal        @db.Decimal(10,2)
-  status        OrderStatus    @default(PENDING)
-  paymentMethod PaymentMethod  @default(BANK_TRANSFER)  // เพิ่ม default value
-  shippingInfo  ShippingAddress?
   paymentSlip   PaymentSlip?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  shippingInfo  ShippingAddress?
 
   @@index([userId])
   @@index([status])
@@ -225,48 +199,35 @@ model Order {
 }
 
 model OrderItem {
-  id        String   @id @default(cuid())
+  id        String  @id @default(cuid())
   orderId   String
-  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   productId String
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Restrict)
   quantity  Int
-  price     Decimal  @db.Decimal(10,2)
+  price     Decimal @db.Decimal(10, 2)
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
 
   @@index([orderId])
   @@index([productId])
 }
 
 model PaymentSlip {
-  id            String    @id @default(cuid())
-  orderId       String    @unique
-  order         Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  originalUrl   String    // URL สลิปการโอน
-  verified      Boolean   @default(false) 
-  verifiedAt    DateTime? // เวลาที่ตรวจสอบ
-  verifiedBy    Int?      // ผู้ตรวจสอบ (admin)
-  verifier      User?     @relation("SlipVerifier", fields: [verifiedBy], references: [id], onDelete: SetNull)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  uploadedAt    DateTime  @default(now())
-  status        SlipStatus @default(PENDING)
+  id          String     @id @default(cuid())
+  orderId     String     @unique
+  originalUrl String
+  verified    Boolean    @default(false)
+  verifiedAt  DateTime?
+  verifiedBy  Int?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  status      SlipStatus @default(PENDING)
+  uploadedAt  DateTime   @default(now())
+  order       Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  verifier    User?      @relation("SlipVerifier", fields: [verifiedBy], references: [id])
 
   @@index([orderId])
   @@index([verifiedBy])
   @@index([verified])
-}
-
-enum SlipStatus {
-  PENDING
-  APPROVED
-  REJECTED
-}
-
-enum OrderStatus {
-  PENDING    // หลังกรอกข้อมูลผู้ซื้อ
-  PAID       // หลังอัพโหลดสลิป 
-  VERIFIED   // หลัง admin ตรวจสอบ
-  CANCELLED  // ยกเลิก
 }
 
 model Cart {
@@ -279,19 +240,55 @@ model Cart {
 }
 
 model CartItem {
-  id           String      @id @default(cuid())
-  cart         Cart        @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  cartId       String
-  product      Product     @relation(fields: [productId], references: [id])
-  productId    String
-  productSize  ProductSize @relation(fields: [productId, sizeId], references: [productId, sizeId])
-  sizeId       String
-  quantity     Int
-  price        Decimal     @db.Decimal(10, 2)
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
+  id          String      @id @default(cuid())
+  cartId      String
+  productId   String
+  quantity    Int
+  price       Decimal     @db.Decimal(10, 2)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  sizeId      String
+  cart        Cart        @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product     Product     @relation(fields: [productId], references: [id])
+  productSize ProductSize @relation(fields: [productId, sizeId], references: [productId, sizeId])
 
   @@index([cartId])
   @@index([productId])
   @@index([productId, sizeId])
+}
+
+enum Role {
+  MEMBER
+  ADMIN
+}
+
+enum ProcurementStatus {
+  DRAFT
+  OPEN
+  CLOSED
+  CANCELLED
+}
+
+enum ProductStatus {
+  NORMAL
+  PREORDER
+  NEW
+}
+
+enum PaymentMethod {
+  BANK_TRANSFER
+  PROMPTPAY
+}
+
+enum SlipStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  VERIFIED
+  CANCELLED
 }
