@@ -366,7 +366,7 @@ export default function CreateProductPage() {
                  className="w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-violet-50 file:text-violet-700"
                />
                <p className="mt-1 text-sm text-zinc-500">
-                 รูปแรกจะเป็นรูปปกสินค้า (สูงสุด 10 รูป, ไม่เกิน 5MB ต่อรูป)
+                 รูปแรกจะเป็นรูปปกสินค้า (สูงสุด 5 รูป, ไม่เกิน 5MB ต่อรูป)
                </p>
              </div>
 
