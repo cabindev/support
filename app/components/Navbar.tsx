@@ -64,6 +64,14 @@ const Navbar: React.FC = () => {
       ]
     },
     { href: '/about/contact', label: 'Contact' },
+    { 
+      href: '/products', 
+      label: 'Store',
+      subItems: [
+        { href: '/products', label: 'สินค้าทั้งหมด' },
+        ...(isAdmin ? [{ href: '/dashboard/products', label: 'จัดการสินค้า' }] : []),
+      ]
+    },
     ...(isAdmin ? [{ href: '/dashboard', label: 'Dashboard' }] : []),
   ];
 

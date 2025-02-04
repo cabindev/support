@@ -2,39 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
+  --primary: #f58220;
+  --primary-dark: #e67816;
+  --primary-light: #ff9900;
+  --text: #333333;
+  --text-light: #666666;
   --background: #ffffff;
-  --foreground: #333333;
-  --primary: #333333;
-  --primary-foreground: #ffffff;
-  --secondary: #f5f5f5;
-  --secondary-foreground: #333333;
-  --accent: #ff9900;
-  --accent-foreground: #ffffff;
-  --muted: #767676;
-  --muted-foreground: #ffffff;
-  --hover-bg: #f5f5f5;
-  --hover-text: #333333;
+  --background-light: #f5f5f5;
+  --error: #ff4d4f;
+  --success: #52c41a;
+  --warning: #faad14;
 }
 
+/* Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1a1a1a;
-    --foreground: #f5f5f5;
-    --primary: #f5f5f5;
-    --primary-foreground: #1a1a1a;
-    --secondary: #2a2a2a;
-    --secondary-foreground: #f5f5f5;
-    --accent: #ff9900;
-    --accent-foreground: #1a1a1a;
-    --muted: #767676;
-    --muted-foreground: #f5f5f5;
-    --hover-bg: #2a2a2a;
-    --hover-text: #f5f5f5;
+    --primary: #ff9900;
+    --primary-dark: #f58220;
+    --primary-light: #ffb84d;
+    --text: #ffffff;
+    --text-light: #d9d9d9;
+    --background: #141414;
+    --background-light: #1f1f1f;
   }
 }
-
 
 body {
   color: var(--foreground);
@@ -46,78 +38,5 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-/* เพิ่มสไตล์สำหรับปุ่มและลิงก์ */
-.btn-primary {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
-}
-
-.btn-primary:hover {
-  background-color: var(--hover-bg);
-  color: var(--hover-text);
-}
-
-.link-primary {
-  color: var(--primary);
-}
-
-.link-primary:hover {
-  color: var(--hover-bg);
-  text-decoration: underline;
-}
-
-.alert {
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
-}
-
-.alert-success {
-  background-color: var(--accent);
-  color: var(--accent-foreground);
-}
-
-.alert-error {
-  background-color: #fee2e2;
-  color: #991b1b;
-}
-
-.loading {
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid var(--primary-foreground);
-  border-radius: 50%;
-  border-top: 2px solid var(--primary);
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.custom-sider {
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-}
-
-.custom-menu {
-  border-right: none !important;
-}
-
-.custom-button:hover {
-  color: #1890ff;
-  background-color: rgba(24, 144, 255, 0.1);
-}
-
-/* wordpress */
-.prose img {
-  @apply rounded-lg shadow-md;
-}
-
-.prose a {
-  @apply text-orange-500 hover:text-orange-600;
 }
 

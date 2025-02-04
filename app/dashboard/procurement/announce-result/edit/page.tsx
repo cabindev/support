@@ -69,7 +69,7 @@ export default function EditAnnounceResultList() {
                 <td className="border p-2">{announcement.procurement.title}</td>
                 <td className="border p-2">{new Date(announcement.announcedDate).toLocaleDateString()}</td>
                 <td className="border p-2">
-                  <Link href={`/dashboard/procurement/announce-result/edit/${announcement.id}`} className="text-blue-500 hover:underline mr-2">
+                  <Link href={`/dashboard/procurement/announce-result/edit/${announcement.id}`} className="text-amber-500 hover:underline mr-2">
                     แก้ไข
                   </Link>
                   <button

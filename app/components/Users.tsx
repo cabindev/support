@@ -6,6 +6,7 @@ import { Table, Switch, message, Avatar, Card, List, Typography, Space } from 'a
 import type { ColumnsType } from 'antd/es/table';
 import axios from 'axios';
 import { useMediaQuery } from 'react-responsive';
+import LoadingSpinner from './LoadingSpinner';
 
 const { Text } = Typography;
 
@@ -65,7 +66,7 @@ export default function Users() {
    <Avatar 
      src={src || '/images/default-avatar.png'} 
      alt={alt}
-     style={{ backgroundColor: '#f56a00' }}
+     className="bg-[var(--primary)]"
    >
      {alt[0]?.toUpperCase()}
    </Avatar>
@@ -102,7 +103,9 @@ export default function Users() {
          checkedChildren="ADMIN"
          unCheckedChildren="MEMBER"
          className="bg-gray-300"
-         style={{ backgroundColor: record.role === 'ADMIN' ? '#1890ff' : undefined }}
+         style={{ 
+           backgroundColor: record.role === 'ADMIN' ? '#f58220' : '#d1d5db' 
+         }}
        />
      ),
    },
@@ -146,7 +149,9 @@ export default function Users() {
                checkedChildren="ADMIN"
                unCheckedChildren="MEMBER"
                className="bg-gray-300"
-               style={{ backgroundColor: user.role === 'ADMIN' ? '#1890ff' : undefined }}
+               style={{ 
+                 backgroundColor: user.role === 'ADMIN' ? '#f58220' : '#d1d5db' 
+               }}
              />
            </Space>
            <button 
@@ -167,19 +172,30 @@ export default function Users() {
        <List
          dataSource={users}
          renderItem={renderMobileCard}
-         loading={loading}
+         loading={{ 
+           spinning: loading,
+           indicator: <LoadingSpinner />
+         }}
        />
      ) : (
        <Table 
          columns={columns} 
          dataSource={users} 
-         loading={loading} 
+         loading={{ 
+           spinning: loading,
+           indicator: <LoadingSpinner />
+         }}
          rowKey="id"
          className="shadow-sm rounded-lg overflow-hidden"
          pagination={{
            defaultPageSize: 10,
            showSizeChanger: true,
            showTotal: (total) => `Total ${total} users`,
+           className: "text-gray-600",
+           style: {
+             '--ant-primary-color': '#f58220',
+             '--ant-primary-hover-color': '#ff9900',
+           } as React.CSSProperties,
          }}
        />
      )}

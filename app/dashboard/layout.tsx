@@ -5,6 +5,11 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   DashboardOutlined,
+  LeftOutlined,      
+  RightOutlined,      
+  CaretLeftOutlined,  
+  CaretRightOutlined,  
+  ShopOutlined,
   UserOutlined,
   SettingOutlined,
   LogoutOutlined,
@@ -16,6 +21,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Flex, Spin } from 'antd';
 
 const { Header, Sider, Content } = Layout;
 
@@ -51,6 +58,21 @@ export default function DashboardLayout({
         { key: '/dashboard/procurement/announce-result/edit', label: '2.2 แก้ไขประกาศผล' },
       ],
     },
+    {
+      key: 'store',
+      icon: <ShopOutlined />,
+      label: 'Store',
+      children: [
+        { key: '/dashboard/products', label: 'สินค้าทั้งหมด' },
+        { key: '/dashboard/products/create', label: 'เพิ่มสินค้าใหม่' },
+        { key: '/dashboard/products/orders', label: 'รายการสั่งซื้อ' },
+        { 
+          key: '/dashboard/products/orders/print-labels', 
+          label: 'พิมพ์ที่อยู่จัดส่ง',
+          className: 'ml-4' // เพิ่ม indent ให้เห็นว่าเป็น sub-item ของ orders
+        },
+      ],
+    }
   ];
 
   useEffect(() => {
@@ -119,7 +141,21 @@ export default function DashboardLayout({
   ];
 
   if (status === "loading") {
-    return <div className="flex justify-center items-center h-screen"><div className="loading"></div></div>;
+    return (
+      <Flex align="center" justify="center" style={{ height: '100vh' }}>
+        <Spin 
+          indicator={
+            <LoadingOutlined 
+              style={{ 
+                fontSize: 24,
+                color: 'var(--primary)' // ใช้สีจาก CSS variables
+              }} 
+              spin
+            />
+          }
+        />
+      </Flex>
+    );
   }
 
   if (!session) {
@@ -168,14 +204,14 @@ export default function DashboardLayout({
             {isMobile ? (
               <Button
                 type="text"
-                icon={<MenuUnfoldOutlined />}
+                icon={<DashboardOutlined />}
                 onClick={() => setDrawerVisible(true)}
                 className="text-xl w-16 h-16 custom-button"
               />
             ) : (
               <Button
                 type="text"
-                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                icon={collapsed ? <RightOutlined /> : <LeftOutlined />}
                 onClick={() => setCollapsed(!collapsed)}
                 className="text-xl w-16 h-16 custom-button"
               />

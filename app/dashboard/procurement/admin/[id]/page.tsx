@@ -203,7 +203,7 @@ export default function EditProcurement() {
         <div>
           <label htmlFor="pdfFile" className="block mb-2">ไฟล์ PDF</label>
           {formData.pdfFile && (
-            <a href={formData.pdfFile} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline mb-2 block">
+            <a href={formData.pdfFile} target="_blank" rel="noopener noreferrer" className="text-amber-500 hover:underline mb-2 block">
               ดูไฟล์ PDF ปัจจุบัน
             </a>
           )}
@@ -215,7 +215,7 @@ export default function EditProcurement() {
             className="w-full p-2 border rounded"
           />
         </div>
-        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        <button type="submit" className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600">
           บันทึกการแก้ไข
         </button>
       </form>

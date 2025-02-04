@@ -77,7 +77,7 @@ export default function Procurement() {
       case 'CANCELLED':
         return 'bg-gray-100 text-gray-800';
       default:
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-amber-100 text-amber-800';
     }
   };
 
@@ -175,7 +175,7 @@ export default function Procurement() {
       </div>
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         {procurement.pdfFile ? (
-          renderPdfButton(procurement.pdfFile, "เอกสารประกาศ", "bg-blue-500")
+          renderPdfButton(procurement.pdfFile, "เอกสารประกาศ", "bg-amber-500")
         ) : (
           <span className="text-gray-500 text-sm">ไม่มีเอกสาร</span>
         )}
@@ -187,7 +187,7 @@ export default function Procurement() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <FaSpinner className="animate-spin text-4xl text-blue-500" />
+        <FaSpinner className="animate-spin text-4xl text-amber-500" />
         <span className="ml-2 text-lg">กำลังโหลดข้อมูล...</span>
       </div>
     );
@@ -199,7 +199,7 @@ export default function Procurement() {
         <p className="text-xl">{error}</p>
         <button 
           onClick={fetchData} 
-          className="mt-4 bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition duration-300"
+          className="mt-4 bg-amber-500 text-white px-6 py-2 rounded hover:bg-amber-600 transition duration-300"
         >
           ลองใหม่อีกครั้ง
         </button>
@@ -261,7 +261,7 @@ export default function Procurement() {
                 </td>
                 <td className="px-4 py-3">
                   {procurement.pdfFile
-                    ? renderPdfButton(procurement.pdfFile, "เอกสารประกาศ", "bg-blue-500")
+                    ? renderPdfButton(procurement.pdfFile, "เอกสารประกาศ", "bg-amber-500")
                     : <span className="text-gray-500 text-sm">ไม่มีเอกสาร</span>
                   }
                 </td>

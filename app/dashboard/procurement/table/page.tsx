@@ -36,7 +36,7 @@ export default function ProcurementTable() {
       case 'CANCELLED':
         return 'bg-gray-100 text-gray-800';
       default:
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-amber-100 text-amber-800';
     }
   };
 
@@ -83,7 +83,7 @@ export default function ProcurementTable() {
                   {procurement.pdfFile && (
                     <button
                       onClick={() => openPdf(procurement.pdfFile)}
-                      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-300"
+                      className="bg-amber-500 text-white px-3 py-1 rounded hover:bg-amber-600 transition duration-300"
                     >
                       เปิดไฟล์ PDF
                     </button>

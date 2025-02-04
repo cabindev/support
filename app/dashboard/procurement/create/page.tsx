@@ -61,7 +61,7 @@ export default function CreateProcurement() {
               value={formData.projectCode}
               onChange={handleChange}
               required
-              className="w-full p-2 border rounded text-sm focus:ring-blue-500 focus:border-blue-500"
+              className="w-full p-2 border rounded text-sm focus:ring-amber-500 focus:border-amber-500"
             />
           </div>
           <div>
@@ -73,7 +73,7 @@ export default function CreateProcurement() {
               value={formData.title}
               onChange={handleChange}
               required
-              className="w-full p-2 border rounded text-sm focus:ring-blue-500 focus:border-blue-500"
+              className="w-full p-2 border rounded text-sm focus:ring-amber-500 focus:border-amber-500"
             />
           </div>
         </div>
@@ -85,7 +85,7 @@ export default function CreateProcurement() {
             value={formData.description}
             onChange={handleChange}
             required
-            className="w-full p-2 border rounded text-sm focus:ring-blue-500 focus:border-blue-500"
+            className="w-full p-2 border rounded text-sm focus:ring-amber-500 focus:border-amber-500"
             rows={3}
           ></textarea>
         </div>
@@ -99,7 +99,7 @@ export default function CreateProcurement() {
               value={formData.startDate}
               onChange={handleChange}
               required
-              className="w-full p-2 border rounded text-sm focus:ring-blue-500 focus:border-blue-500"
+              className="w-full p-2 border rounded text-sm focus:ring-amber-500 focus:border-amber-500"
             />
           </div>
           <div>
@@ -111,7 +111,7 @@ export default function CreateProcurement() {
               value={formData.endDate}
               onChange={handleChange}
               required
-              className="w-full p-2 border rounded text-sm focus:ring-blue-500 focus:border-blue-500"
+              className="w-full p-2 border rounded text-sm focus:ring-amber-500 focus:border-amber-500"
             />
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function CreateProcurement() {
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="w-full p-2 border rounded text-sm focus:ring-blue-500 focus:border-blue-500"
+            className="w-full p-2 border rounded text-sm focus:ring-amber-500 focus:border-amber-500"
           >
             <option value="OPEN">เปิด</option>
             <option value="CLOSED">ปิด</option>
@@ -136,7 +136,7 @@ export default function CreateProcurement() {
             id="coverImage"
             onChange={(e) => handleFileChange(e, setCoverImage)}
             accept="image/*"
-            className="w-full p-2 border rounded text-sm focus:ring-blue-500 focus:border-blue-500"
+            className="w-full p-2 border rounded text-sm focus:ring-amber-500 focus:border-amber-500"
           />
         </div>
         <div>
@@ -146,11 +146,11 @@ export default function CreateProcurement() {
             id="pdfFile"
             onChange={(e) => handleFileChange(e, setPdfFile)}
             accept=".pdf"
-            className="w-full p-2 border rounded text-sm focus:ring-blue-500 focus:border-blue-500"
+            className="w-full p-2 border rounded text-sm focus:ring-amber-500 focus:border-amber-500"
           />
         </div>
         <div className="flex items-center justify-end">
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-sm">
+          <button type="submit" className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 text-sm">
             สร้างประกาศ
           </button>
         </div>

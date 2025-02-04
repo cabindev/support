@@ -50,7 +50,7 @@ export default function ProfilePage() {
             </div>
             <button 
               onClick={() => router.push(`/dashboard/profile/edit/${profile.id}`)}
-              className="absolute top-4 right-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
+              className="absolute top-4 right-4 bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
             >
               Edit
             </button>

@@ -88,7 +88,7 @@ export default function AdminProcurementList() {
               <td className="px-4 py-2">
                 <button
                   onClick={() => router.push(`/dashboard/procurement/admin/${procurement.id}`)}
-                  className="bg-blue-500 text-white px-2 py-1 rounded mr-2 hover:bg-blue-600"
+                  className="bg-amber-500 text-white px-2 py-1 rounded mr-2 hover:bg-amber-600"
                 >
                   แก้ไข
                 </button>

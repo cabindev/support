@@ -16,7 +16,7 @@ export default function Stats() {
  return (
    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
      {/* Users Card */}
-     <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl shadow-xl p-6 transform hover:scale-105 transition-all duration-300">
+     <div className="bg-gradient-to-r from-amber-500 to-amber-600 rounded-xl shadow-xl p-6 transform hover:scale-105 transition-all duration-300">
        <div className="flex items-center justify-between">
          <div>
            <p className="text-white text-sm font-light mb-1">จำนวนผู้ใช้ทั้งหมด</p>
@@ -24,7 +24,7 @@ export default function Stats() {
              {stats.userCount.toLocaleString()}
            </h3>
          </div>
-         <div className="bg-blue-400 bg-opacity-30 rounded-full p-3">
+         <div className="bg-amber-400 bg-opacity-30 rounded-full p-3">
            <FaUsers className="h-8 w-8 text-white" />
          </div>
        </div>

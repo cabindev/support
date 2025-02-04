@@ -124,7 +124,7 @@ export default function EditProfilePage() {
            id="firstName"
            value={firstName}
            onChange={(e) => setFirstName(e.target.value)}
-           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-300 focus:ring focus:ring-amber-200 focus:ring-opacity-50"
            required
          />
        </div>
@@ -135,7 +135,7 @@ export default function EditProfilePage() {
            id="lastName"
            value={lastName}
            onChange={(e) => setLastName(e.target.value)}
-           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-300 focus:ring focus:ring-amber-200 focus:ring-opacity-50"
            required
          />
        </div>
@@ -146,14 +146,14 @@ export default function EditProfilePage() {
            id="email"
            value={email}
            onChange={(e) => setEmail(e.target.value)}
-           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-amber-300 focus:ring focus:ring-amber-200 focus:ring-opacity-50"
            required
          />
        </div>
        <div>
          <label className="block text-sm font-medium text-gray-700 mb-2">
            รูปโปรไฟล์
-           {isCompressing && <span className="text-blue-500 ml-2">กำลังบีบอัดรูปภาพ...</span>}
+           {isCompressing && <span className="text-amber-500 ml-2">กำลังบีบอัดรูปภาพ...</span>}
          </label>
          
          <input
@@ -164,8 +164,8 @@ export default function EditProfilePage() {
              file:mr-4 file:py-2 file:px-4
              file:rounded-md file:border-0
              file:text-sm file:font-semibold
-             file:bg-blue-50 file:text-blue-700
-             hover:file:bg-blue-100"
+             file:bg-amber-50 file:text-amber-700
+             hover:file:bg-amber-100"
            disabled={isCompressing}
          />
 
@@ -185,7 +185,7 @@ export default function EditProfilePage() {
            type="submit"
            disabled={isCompressing}
            className={`px-4 py-2 rounded-md text-white font-medium
-             ${isCompressing ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'}
+             ${isCompressing ? 'bg-gray-400' : 'bg-amber-500 hover:bg-amber-600'}
              transition-colors duration-200`}
          >
            {isCompressing ? 'กำลังประมวลผล...' : 'บันทึกการเปลี่ยนแปลง'}

@@ -75,7 +75,7 @@ export default function AnnounceResultList() {
               <td className="px-4 py-2">{result.procurement.status}</td>
               <td className="px-4 py-2">
                 {result.pdfFile ? (
-                  <button onClick={() => openPdf(result.pdfFile)} className="bg-blue-500 text-white px-3 py-1 rounded">
+                  <button onClick={() => openPdf(result.pdfFile)} className="bg-amber-500 text-white px-3 py-1 rounded">
                     <FaFilePdf className="inline mr-2" />
                     เปิด PDF
                   </button>
