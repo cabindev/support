@@ -318,7 +318,7 @@ export default function CartPage() {
             className="block w-full py-3 bg-violet-600 text-white text-center rounded-lg
               hover:bg-violet-700 transition-colors font-medium"
           >
-            ดำเนินการชำระเงิน
+            ดำเนินการชำระเงิน...
           </Link>
         </div>
       </div>
