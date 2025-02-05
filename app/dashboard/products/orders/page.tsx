@@ -1,4 +1,4 @@
-// app/admin/products/orders/page.tsx
+// app/products/orders/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -240,7 +240,7 @@ export default function AdminOrdersPage() {
                  </td>
                  <td className="px-6 py-4 whitespace-nowrap text-sm">
                    <button
-                     onClick={() => router.push(`/admin/products/orders/${order.id}`)}
+                     onClick={() => router.push(`/products/orders/${order.id}`)}
                      className="text-violet-600 hover:text-violet-900"
                    >
                      ตรวจสอบ

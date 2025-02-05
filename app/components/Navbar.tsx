@@ -253,13 +253,107 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden border-t bg-white">
-          <div className="pt-2 pb-3 space-y-1">
-            {/* ... rest of mobile menu code remains the same ... */}
-          </div>
+{isMobileMenuOpen && (
+  <div className="md:hidden border-t bg-white">
+    <div className="pt-2 pb-3 space-y-1">
+      {navItems.map((item) => (
+        <div key={item.href}>
+          {item.subItems ? (
+            <div>
+              <button
+                onClick={() => toggleSubmenu(item.href)}
+                className="w-full flex items-center justify-between px-4 py-2 text-base font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-500"
+              >
+                <span>{item.label}</span>
+                <IoIosArrowDown 
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    openSubmenu === item.href ? 'rotate-180' : ''
+                  }`} 
+                />
+              </button>
+              
+              {openSubmenu === item.href && (
+                <div className="bg-gray-50 py-1">
+                  {item.subItems.map((subItem) => (
+                    <Link
+                      key={subItem.href}
+                      href={subItem.href}
+                      className={`block pl-8 pr-4 py-2 text-sm ${
+                        pathname === subItem.href
+                          ? "text-orange-500 bg-orange-50"
+                          : "text-gray-600 hover:bg-orange-50 hover:text-orange-500"
+                      }`}
+                      onClick={() => {
+                        setOpenSubmenu(null);
+                        setIsMobileMenuOpen(false);
+                      }}
+                    >
+                      {subItem.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              href={item.href}
+              className={`block px-4 py-2 text-base font-medium ${
+                pathname === item.href
+                  ? "text-orange-500 bg-orange-50"
+                  : "text-gray-700 hover:bg-orange-50 hover:text-orange-500"
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          )}
         </div>
-      )}
+      ))}
+
+      {/* Mobile Profile Section */}
+      <div className="border-t border-gray-200 pt-4">
+        {session ? (
+          <>
+            <div className="px-4 py-2 flex items-center">
+              <img
+                className="h-8 w-8 rounded-full object-cover border border-gray-200"
+                src={session.user?.image || "/images/default-avatar.png"}
+                alt="Profile"
+              />
+              <span className="ml-3 text-base font-medium text-gray-700">
+                {session.user?.firstName}
+              </span>
+            </div>
+            <Link
+              href="/profile"
+              className="block px-4 py-2 text-base font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-500"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Profile
+            </Link>
+            <button
+              onClick={() => {
+                handleSignOut();
+                setIsMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 text-base font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-500"
+            >
+              Sign Out
+            </button>
+          </>
+        ) : (
+          <Link
+            href="/auth/signin"
+            className="block px-4 py-2 text-base font-medium text-gray-700 hover:bg-orange-50 hover:text-orange-500"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Sign In
+          </Link>
+        )}
+      </div>
+    </div>
+  </div>
+)}
     </nav>
   );
 };
