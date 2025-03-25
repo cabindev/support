@@ -30,6 +30,10 @@ model User {
   @@index([role])
 }
 
+enum Role {
+  MEMBER
+  ADMIN
+}
 model MediaRequest {
   id          Int      @id @default(autoincrement())
   userId      Int
@@ -257,10 +261,7 @@ model CartItem {
   @@index([productId, sizeId])
 }
 
-enum Role {
-  MEMBER
-  ADMIN
-}
+
 
 enum ProcurementStatus {
   DRAFT

@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -7,7 +8,8 @@ import authOptions from "./lib/configs/auth/authOptions";
 import ConditionalNavbar from "./components/ConditionalNavbar";
 import 'antd/dist/reset.css';
 import { ConfigProvider } from 'antd';
-import { theme } from '@/theme/themeConfig'; // หรือ path ที่ถูกต้องตามโครงสร้างโปรเจค
+import { theme } from '@/theme/themeConfig';
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 const seppuriSemibold = localFont({
   src: "./fonts/seppuri-semibold-webfont.woff2",
@@ -41,8 +43,10 @@ export default async function RootLayout({
       >
         <SessionProvider session={session}>
           <ConfigProvider theme={theme}>
-            <ConditionalNavbar />
-            {children}
+            <LanguageProvider>
+              <ConditionalNavbar />
+              {children}
+            </LanguageProvider>
           </ConfigProvider>
         </SessionProvider>
       </body>

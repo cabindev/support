@@ -25,21 +25,22 @@ export default function RequestMedia() {
       return;
     }
     setIsLoading(true);
-
+  
     const formData = new FormData();
     formData.append('subject', subject);
     formData.append('message', message);
     formData.append('phoneNumber', phoneNumber);
     if (file) formData.append('file', file);
-
+  
     try {
       const response = await axios.post('/api/support', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setIsSuccess(true);
       setTimeout(() => {
-        router.push('/');
-      }, 5000);
+        // เปลี่ยนจาก router.push('/') เป็น window.location.href เพื่อเปลี่ยนไปยัง URL ภายนอก
+        window.location.href = 'https://sdnthailand.com/';
+      }, 3000); // เปลี่ยนจาก 5000 (5 วินาที) เป็น 3000 (3 วินาที)
     } catch (error) {
       setIsLoading(false);
       toast.error('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
