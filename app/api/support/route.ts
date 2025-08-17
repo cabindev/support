@@ -156,7 +156,7 @@ export async function POST(request: NextRequest) {
    // Send email to admin team
    await transporter.sendMail({
      from: '"SDN Thailand" <sdnthailandbackup@gmail.com>',
-     to: "evo_reaction@hotmail.com, tom_teera@hotmail.com, bosupaluk@hotmail.com, tan66847@gmail.com",
+     to: "evo_reaction@hotmail.com, tom_teera@hotmail.com, tan66847@gmail.com",
      subject: `คำขอสื่อรณรงค์ใหม่: ${subject}`,
      html: adminEmailHtml,
      attachments: [
