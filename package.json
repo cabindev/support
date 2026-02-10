@@ -29,6 +29,7 @@
     "express": "^4.21.0",
     "html-entities": "^2.5.2",
     "jquery": "^3.7.1",
+    "mysql2": "^3.16.3",
     "next": "^14.2.31",
     "next-auth": "^4.24.8",
     "nodemailer": "^6.9.15",
