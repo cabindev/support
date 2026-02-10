@@ -9,6 +9,7 @@ interface AnnounceResult {
   procurementId: string;
   pdfFile: string | null;
   announcedDate: string;
+  updatedAt: string;
   procurement: {
     projectCode: string;
     title: string;
@@ -71,7 +72,7 @@ export default function AnnounceResultList() {
             <tr key={result.id} className="border-b">
               <td className="px-4 py-2">{result.procurement.projectCode}</td>
               <td className="px-4 py-2">{result.procurement.title}</td>
-              <td className="px-4 py-2">{new Date(result.announcedDate).toLocaleDateString()}</td>
+              <td className="px-4 py-2">{new Date(result.updatedAt).toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' })}</td>
               <td className="px-4 py-2">{result.procurement.status}</td>
               <td className="px-4 py-2">
                 {result.pdfFile ? (
