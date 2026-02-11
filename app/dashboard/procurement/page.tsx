@@ -23,6 +23,7 @@ interface AnnounceResult {
   procurementId: string;
   pdfFile: string | null;
   announcedDate: string;
+  updatedAt: string;
 }
 
 export default function Procurement() {
@@ -115,7 +116,7 @@ export default function Procurement() {
             <FaCheckCircle className="mr-1" /> ประกาศแล้ว
           </span>
           <span className="text-xs text-gray-600 mb-2">
-            {new Date(result.announcedDate).toLocaleDateString('th-TH', {
+            {new Date(result.updatedAt).toLocaleDateString('th-TH', {
               year: 'numeric',
               month: 'long',
               day: 'numeric'
