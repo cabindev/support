@@ -15,21 +15,13 @@
   --warning: #faad14;
 }
 
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: #ff9900;
-    --primary-dark: #f58220;
-    --primary-light: #ffb84d;
-    --text: #ffffff;
-    --text-light: #d9d9d9;
-    --background: #141414;
-    --background-light: #1f1f1f;
-  }
+/* Force light theme regardless of OS dark mode preference */
+:root {
+  color-scheme: light;
 }
 
 body {
-  color: var(--foreground);
+  color: var(--text);
   background: var(--background);
   font-family: var(--font-seppuri-semibold), var(--font-seppuri-thin), sans-serif;
 }
